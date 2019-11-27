@@ -28,7 +28,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset ('app-assets/css/components.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset ('app-assets/css/themes/dark-layout.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset ('app-assets/css/themes/semi-dark-layout.css')}}">
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset ('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset ('app-assets/css/core/colors/palette-gradient.css')}}">

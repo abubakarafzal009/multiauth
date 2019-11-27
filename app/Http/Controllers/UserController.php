@@ -174,7 +174,12 @@ class UserController extends Controller
             $validator = \Validator::make($request->all(), $rules , $messages);
             if ($validator->fails())
             {
-                return Redirect::back()->withErrors($validator);
+                dd($validator);
+                $notification = array(
+                    'message' => $validator, 
+                    'alert-type' => 'success'
+                );
+                return Redirect::back()->with($notification);
             }
             else
             {

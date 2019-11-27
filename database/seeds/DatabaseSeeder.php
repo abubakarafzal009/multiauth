@@ -34,14 +34,15 @@ class DatabaseSeeder extends Seeder
         // $role->givePermissionTo('edit articles');
 
         // or may be done by chaining
-        $role = Role::create(['name' => 'super-Admin'])
+        $role = Role::create(['name' => 'SuperAdmin'])
             ->givePermissionTo(['publish articles', 'unpublish articles','delete articles','edit articles']);
 
         $role = Role::create(['name' => 'Admin'])
-           ->givePermissionTo(['Read articles']);;
-        $role->givePermissionTo(Permission::all());
+           ->givePermissionTo(['Read articles']);
+        // $role->givePermissionTo(Permission::all());
        $user = User::create([ 'name' => 'John', 'email' => 'admn@example.com', 'password' => bcrypt('password'), 'created_at' => '2019-05-28 04:45:27', 'updated_at' => '2019-05-28 04:45:27' ]); 
        $user->assignRole('Admin');
-$user1 = User::create([ 'name' => 'John Doe', 'email' => 'superadmin@example.com', 'password' => bcrypt('password'), 'created_at' => '2019-05-28 04:45:27', 'updated_at' => '2019-05-28 04:45:27' ]); $user->assignRole('super-Admin');
+$user1 = User::create([ 'name' => 'John Doe', 'email' => 'superadmin@example.com', 'password' => bcrypt('password'), 'created_at' => '2019-05-28 04:45:27', 'updated_at' => '2019-05-28 04:45:27' ]);
+ $user1->assignRole('SuperAdmin');
     }
 }

@@ -89,7 +89,7 @@
                                             </ul>
                                         </td>
 
-                                    @if(auth()->user()->can('create articles') && auth()->user()->can('update articles') && auth()->user()->can('delete articles'))
+                                    @if(auth()->user()->can('update articles') && auth()->user()->can('delete articles'))
                                         
 
                                         <td>
