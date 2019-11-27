@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
-
+@push('css')
+@toastr_css
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+@endpush
 
 @section('content')
 <div class="content-body">
@@ -30,19 +38,18 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="">Home</a>
                             </li>
-                            <li class="breadcrumb-item active">Contenitori
+                            <li class="breadcrumb-item active">Permission
                             </li>
                         </ol>
                     </div>
                 </div>
             </div>
         </div>
-        @if(auth()->user()->can('create articles'))
-
+@role('SuperAdmin')
         <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
         <a href="{{route('Permission.create')}}" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i></a>
         </div>
-        @endif
+        @endrole
     </div>
                     <!-- DataTable starts -->
                     <section id="basic-datatable">
@@ -74,8 +81,7 @@
                                     <td>{{$permission->name}}</td>
 
                                        
-
-                                    @if(auth()->user()->can('create articles') && auth()->user()->can('update articles') && auth()->user()->can('delete articles'))
+@role('SuperAdmin')
                                     <td>
                                             <a href="{{route('Permission.edit',$permission->id)}}" class=""><i
                                                 class="feather icon-edit" vx-tooltip
@@ -85,7 +91,7 @@
                                                         <i class="feather icon-trash"></i>
                                                     </button>
                                     </td>
-                                    @endif
+                                    @endrole
                         </tr>
                         <div class="modal fade" id="confirm-delete{{$permission->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -186,5 +192,10 @@
 
             </div>
     <!--/ Zero configuration table -->
+    @push('js')
+    @jquery
+    @toastr_js
+    @toastr_render
+    @endpush
 @endsection
 

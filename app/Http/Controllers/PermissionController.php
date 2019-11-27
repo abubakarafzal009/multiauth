@@ -43,6 +43,8 @@ class PermissionController extends Controller
     {
         $name=request('name');
         Permission::create(['name' => $name]);
+        toastr()->success('Permission has been Created successfully!');
+
         return redirect('Permission');
     }
 
@@ -82,6 +84,8 @@ class PermissionController extends Controller
         $permission=Permission::where('id',$id)->first();
         $permission->name=request('name');
         $permission->save();
+        toastr()->success('Permission has been Updated successfully!');
+
         return redirect('Permission');
     }
 
@@ -95,6 +99,8 @@ class PermissionController extends Controller
     {
         $permission=Permission::where('id',$id)->first();
         $permission->delete();
+        toastr()->error('User has been Deleted successfully!');
+
         return redirect('Permission');
     }
 }

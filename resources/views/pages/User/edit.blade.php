@@ -44,7 +44,7 @@
                     <hr>
                     <div class="form-group row">
                             <label class="control-label col-sm-4 text-right font-weight-bold"
-                                   for="crud-contratto">Permission</label>
+                                   for="crud-contratto">Role</label>
                             <div class="col-sm-8 dropdown-mul-2" id="wrap-contratto">
                 
                                 <select required="" data-select-2="" name="role[]"
@@ -96,7 +96,7 @@
 
                 <button type="reset" class="btn btn-warning btn-xs text-white">Cancel</button>
                 &nbsp;&nbsp;&nbsp;
-                   <button type="submit" class="btn btn-primary float-right btn-inline mb-50">Register</button>
+                   <button type="submit" class="btn btn-primary float-right btn-inline mb-50">update</button>
                    
                 </div>
             </div>

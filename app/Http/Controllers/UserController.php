@@ -64,6 +64,8 @@ class UserController extends Controller
             $validator = \Validator::make($request->all(), $rules , $messages);
             if ($validator->fails())
             {
+                // dd($validator->messages);
+
                 return Redirect::back()->withErrors($validator);
             }
      else
@@ -77,6 +79,11 @@ class UserController extends Controller
         {
             $user->assignRole($role);
         }
+        $notification = array(
+            'message' => 'I am a successful message!', 
+            'alert-type' => 'success'
+        );
+        toastr()->success('User has been saved successfully!');
         return redirect('User');
      }
     }
@@ -174,7 +181,6 @@ class UserController extends Controller
             $validator = \Validator::make($request->all(), $rules , $messages);
             if ($validator->fails())
             {
-                dd($validator);
                 $notification = array(
                     'message' => $validator, 
                     'alert-type' => 'success'
@@ -194,6 +200,7 @@ class UserController extends Controller
                {
                    $user->assignRole($role);
                }
+               toastr()->success('User has been Updated successfully!');
 
                return redirect('User');
             }
@@ -212,6 +219,8 @@ class UserController extends Controller
     {
       $user=User::where('id',$id)->first();
       $user->delete();
+      toastr()->error('User has been Deleted successfully!');
+
       return redirect('User');
     }
 }

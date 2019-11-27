@@ -51,6 +51,7 @@ class RoleController extends Controller
         $role->givePermissionTo($per);
 
        }
+       toastr()->success('Role has been Created successfully!');
        
        return redirect('Role');
 
@@ -93,6 +94,7 @@ class RoleController extends Controller
     {
         $role = Role::where('id',$id)->first();
         \DB::table('role_has_permissions')->where('role_id',$id)->delete();
+
         foreach(request('permission') as $per)
         {
             
@@ -101,6 +103,8 @@ class RoleController extends Controller
  
         }
         $role->save();
+        toastr()->success('Role has been Updated successfully!');
+
         return redirect('Role');
     }
 
@@ -114,6 +118,8 @@ class RoleController extends Controller
     {
         $role=Role::where('id',$id)->first();
         $role->delete();
+        toastr()->error('Role has been Deleted successfully!');
+
         return redirect('Role');
     }
 }

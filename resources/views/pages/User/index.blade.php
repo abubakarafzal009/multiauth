@@ -1,8 +1,17 @@
 @extends('layouts.app')
 
 
-
+@push('css')
+@toastr_css
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+@endpush
 @section('content')
+
 <div class="content-body">
                 <!-- Data list view starts -->
                 <section id="data-list-view" class="data-list-view-header">
@@ -37,11 +46,11 @@
                 </div>
             </div>
         </div>
-        @if(auth()->user()->can('create articles'))
+        @role('SuperAdmin')
         <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
             <a href="{{url('User/create')}}" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i></a>
         </div>
-        @endif
+        @endrole
     </div>
                     <!-- DataTable starts -->
                     <section id="basic-datatable">
@@ -49,7 +58,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Permission</h4>
+                        <h4 class="card-title">User</h4>
 
 
                     </div>
@@ -89,7 +98,7 @@
                                             </ul>
                                         </td>
 
-                                    @if(auth()->user()->can('update articles') && auth()->user()->can('delete articles'))
+                                    @role('SuperAdmin')
                                         
 
                                         <td>
@@ -101,7 +110,7 @@
                                                                     <i class="feather icon-trash"></i>
                                                                 </button>
                                                 </td>
-                                                @endif
+                                                @endrole
                                     </tr>
                                     <div class="modal fade" id="confirm-delete{{$use->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
@@ -203,5 +212,10 @@
 
             </div>
     <!--/ Zero configuration table -->
+  @push('js')
+  @jquery
+  @toastr_js
+  @toastr_render
+  @endpush
 @endsection
 
