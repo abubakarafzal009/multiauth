@@ -25,7 +25,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">Contenitori</h2>
+                    <h2 class="content-header-title float-left mb-0">Permission</h2>
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="">Home</a>
@@ -37,9 +37,12 @@
                 </div>
             </div>
         </div>
+        @if(auth()->user()->can('create articles'))
+
         <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
         <a href="{{route('Permission.create')}}" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i></a>
         </div>
+        @endif
     </div>
                     <!-- DataTable starts -->
                     <section id="basic-datatable">
@@ -72,7 +75,7 @@
 
                                        
 
-                                       
+                                    @if(auth()->user()->can('create articles') && auth()->user()->can('update articles') && auth()->user()->can('delete articles'))
                                     <td>
                                             <a href="{{route('Permission.edit',$permission->id)}}" class=""><i
                                                 class="feather icon-edit" vx-tooltip
@@ -82,6 +85,7 @@
                                                         <i class="feather icon-trash"></i>
                                                     </button>
                                     </td>
+                                    @endif
                         </tr>
                         <div class="modal fade" id="confirm-delete{{$permission->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

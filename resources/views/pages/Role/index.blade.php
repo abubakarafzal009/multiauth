@@ -38,9 +38,12 @@
                 </div>
             </div>
         </div>
+        @if(auth()->user()->can('create articles'))
+
         <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
         <a href="{{route('Role.create')}}" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i></a>
         </div>
+        @endif
     </div>
                     <!-- DataTable starts -->
                     <section id="basic-datatable">
@@ -80,6 +83,7 @@
                                                
                                             </ul>
                                         </td>
+                                    @if(auth()->user()->can('create articles') && auth()->user()->can('update articles') && auth()->user()->can('delete articles'))
                                        
                                         <td>
                                                 <a href="{{route('Role.edit',$roles->id)}}" class=""><i
@@ -90,6 +94,7 @@
                                                             <i class="feather icon-trash"></i>
                                                         </button>
                                         </td>
+                                        @endif
                             </tr>
                             <div class="modal fade" id="confirm-delete{{$roles->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
